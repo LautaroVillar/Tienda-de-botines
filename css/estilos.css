@@ -41,6 +41,9 @@ h1 {
     font-weight: 700;
     font-size: 25px;
 }
+.titulo{
+    text-decoration: none;
+}
 
 #boton-carrito {
     border: none;

@@ -28,7 +28,7 @@ botonVaciar.addEventListener('click', () => {
 })
 
 
-stockProductos.forEach((producto) => {
+stockProductosAdidas.forEach((producto) => {
     const div = document.createElement('div')
     div.classList.add('producto')
     div.innerHTML = `
@@ -53,7 +53,19 @@ stockProductos.forEach((producto) => {
 
 
 const agregarAlCarrito = (prodId) => {
-
+    Toastify({
+        text: "Se agrego su producto al carrito",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
     
     const existe = carrito.some (prod => prod.id === prodId) 
     if (existe){ 
@@ -64,7 +76,7 @@ const agregarAlCarrito = (prodId) => {
             }
         })
     } else { 
-        const item = stockProductos.find((prod) => prod.id === prodId)
+        const item = stockProductosAdidas.find((prod) => prod.id === prodId)
         carrito.push(item)
     }
     
@@ -74,15 +86,31 @@ const agregarAlCarrito = (prodId) => {
 
 
 const eliminarDelCarrito = (prodId) => {
+    Swal.fire({
+        title: '¿Estas seguro que queres eliminar el producto?',
+        text: "No vas a poder revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'cancelar',
+        confirmButtonText: 'Si, estoy seguro!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title:'Eliminado!',
+            text:'Tu producto fue eliminado.',
+            timer: 3000
+        })
+          actualizarCarrito() 
+        }
+      })
     const item = carrito.find((prod) => prod.id === prodId)
 
     const indice = carrito.indexOf(item) 
 
     carrito.splice(indice, 1) 
-    
-    actualizarCarrito() 
-    
-    console.log(carrito)
+       
 }
 
 const actualizarCarrito = () => {
