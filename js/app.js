@@ -15,20 +15,39 @@ const cantidadTotal = document.getElementById('cantidadTotal')
 
 let carrito = []
 
-document.addEventListener('DOMContentLoaded', () => {
+
+
+document.addEventListener('DOMContentLoaded', ()=> {
+        fetchData()
     //operador ternario
-    (localStorage.getItem('carrito'))? carrito = JSON.parse(localStorage.getItem('carrito')):
+    if (localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
+    }
     
 })
 
+const fetchData = async () => {
+    try {
+        const res = await fetch("/apiStock.json")
+        const data = await res.json()
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+//---------------Vaciamos el carrito-------------------------
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
     actualizarCarrito()
 })
 
-
-stockProductosAdidas.forEach((producto) => {
+//-------------Seleccionamos la sección Adidas-------------------
+if (document.title === 'Tienda de botines-Adidas'){
+    const stockProductosAdidas = stockProductos.filter(productoAdidas => productoAdidas.marca === "Adidas")
+    stockProductosAdidas.forEach((producto) => {
     const div = document.createElement('div')
     div.classList.add('producto')
     div.innerHTML = `
@@ -36,7 +55,7 @@ stockProductosAdidas.forEach((producto) => {
     <h3>${producto.nombre}</h3>
     <p>Talle: ${producto.talle}</p>
     <p class="precioProducto">Precio:$ ${producto.precio}</p>
-    <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
+    <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
     `
     contenedorProductos.appendChild(div)
 
@@ -50,21 +69,73 @@ stockProductosAdidas.forEach((producto) => {
        
     })
 })
-
-
+}
+//-----------Seleccionamos la sección Nike--------------
+if (document.title === 'Tienda de botines-Nike'){
+        const stockProductosNike = stockProductos.filter(productoNike => productoNike.marca === "Nike")
+        stockProductosNike.forEach((producto) => {
+        const div = document.createElement('div')
+        div.classList.add('producto')
+        div.innerHTML = `
+        <img src=${producto.img} class="img" alt= "">
+        <h3>${producto.nombre}</h3>
+        <p>Talle: ${producto.talle}</p>
+        <p class="precioProducto">Precio:$ ${producto.precio}</p>
+        <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
+        `
+        contenedorProductos.appendChild(div)
+    
+       
+        const boton = document.getElementById(`agregar${producto.id}`)
+       
+    
+        boton.addEventListener('click', () => {
+           
+            agregarAlCarrito(producto.id)
+           
+        })
+    })
+}
+//---------------Seleccionamos la seccción Puma---------------------
+if (document.title === 'Tienda de botines-Puma'){
+        const stockProductosPuma = stockProductos.filter(productoPuma => productoPuma.marca === "Puma")
+        stockProductosPuma.forEach((producto) => {
+        const div = document.createElement('div')
+        div.classList.add('producto')
+        div.innerHTML = `
+        <img src=${producto.img} class="img" alt= "">
+        <h3>${producto.nombre}</h3>
+        <p>Talle: ${producto.talle}</p>
+        <p class="precioProducto">Precio:$ ${producto.precio}</p>
+        <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
+        `
+        contenedorProductos.appendChild(div)
+    
+       
+        const boton = document.getElementById(`agregar${producto.id}`)
+       
+    
+        boton.addEventListener('click', () => {
+           
+            agregarAlCarrito(producto.id)
+           
+        })
+    })
+}
+//-----------------Agregamos los productos al carrito-----------------
 const agregarAlCarrito = (prodId) => {
     Toastify({
         text: "Se agrego su producto al carrito",
         duration: 3000,
         newWindow: true,
         close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
+        gravity: "bottom",
+        position: "right", 
+        stopOnFocus: true, 
         style: {
           background: "linear-gradient(to right, #00b09b, #96c93d)",
         },
-        onClick: function(){} // Callback after click
+        onClick: function(){}
       }).showToast();
     
     const existe = carrito.some (prod => prod.id === prodId) 
@@ -76,7 +147,7 @@ const agregarAlCarrito = (prodId) => {
             }
         })
     } else { 
-        const item = stockProductosAdidas.find((prod) => prod.id === prodId)
+        const item = stockProductos.find((prod) => prod.id === prodId)
         carrito.push(item)
     }
     
@@ -84,7 +155,7 @@ const agregarAlCarrito = (prodId) => {
 }
 
 
-
+//-----------------Eliminamos los productos del carrito----------------------
 const eliminarDelCarrito = (prodId) => {
     Swal.fire({
         title: '¿Estas seguro que queres eliminar el producto?',
@@ -112,15 +183,11 @@ const eliminarDelCarrito = (prodId) => {
     carrito.splice(indice, 1) 
        
 }
-
+//--------------Actualizamos los productos dentro del carrito----------------------
 const actualizarCarrito = () => {
     
 
     contenedorCarrito.innerHTML = "" 
-
-
-
-    
 
     carrito.forEach((prod) => {
         const div = document.createElement('div')
@@ -137,13 +204,9 @@ const actualizarCarrito = () => {
         localStorage.setItem('carrito', JSON.stringify(carrito))
 
     })
-   
+   //----------Nos da como resultado la cantidad de productos que tenemos en el carrito----------
     contadorCarrito.innerText = carrito.length 
 
-    console.log(carrito)
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
     
-
-
-
 }
