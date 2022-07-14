@@ -17,25 +17,26 @@ let carrito = []
 
 
 
-document.addEventListener('DOMContentLoaded', ()=> {
-        fetchData()
+document.addEventListener('DOMContentLoaded', () => {
+        // fetchData()
     //operador ternario
     if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
     }
-    
 })
 
-const fetchData = async () => {
-    try {
-        const res = await fetch("/apiStock.json")
-        const data = await res.json()
-        console.log(data)
-    } catch (error) {
-        console.log(error)
-    }
-}
+// const fetchData = async () => {
+//     try {
+//         const res = await fetch("/apiStock.json")
+//         const data = await res.json()
+//         console.log(data)
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+
 
 
 //---------------Vaciamos el carrito-------------------------
@@ -45,8 +46,11 @@ botonVaciar.addEventListener('click', () => {
 })
 
 //-------------Seleccionamos la sección Adidas-------------------
+const mostrarProductos = async () => {
+    const resp = await fetch("/apiStock.json")
+    const data = await resp.json()
 if (document.title === 'Tienda de botines-Adidas'){
-    const stockProductosAdidas = stockProductos.filter(productoAdidas => productoAdidas.marca === "Adidas")
+    const stockProductosAdidas = data.filter(productoAdidas => productoAdidas.marca === "Adidas")
     stockProductosAdidas.forEach((producto) => {
     const div = document.createElement('div')
     div.classList.add('producto')
@@ -70,9 +74,10 @@ if (document.title === 'Tienda de botines-Adidas'){
     })
 })
 }
+
 //-----------Seleccionamos la sección Nike--------------
 if (document.title === 'Tienda de botines-Nike'){
-        const stockProductosNike = stockProductos.filter(productoNike => productoNike.marca === "Nike")
+        const stockProductosNike = data.filter(productoNike => productoNike.marca === "Nike")
         stockProductosNike.forEach((producto) => {
         const div = document.createElement('div')
         div.classList.add('producto')
@@ -98,7 +103,7 @@ if (document.title === 'Tienda de botines-Nike'){
 }
 //---------------Seleccionamos la seccción Puma---------------------
 if (document.title === 'Tienda de botines-Puma'){
-        const stockProductosPuma = stockProductos.filter(productoPuma => productoPuma.marca === "Puma")
+        const stockProductosPuma = data.filter(productoPuma => productoPuma.marca === "Puma")
         stockProductosPuma.forEach((producto) => {
         const div = document.createElement('div')
         div.classList.add('producto')
@@ -122,6 +127,7 @@ if (document.title === 'Tienda de botines-Puma'){
         })
     })
 }
+
 //-----------------Agregamos los productos al carrito-----------------
 const agregarAlCarrito = (prodId) => {
     Toastify({
@@ -147,13 +153,15 @@ const agregarAlCarrito = (prodId) => {
             }
         })
     } else { 
-        const item = stockProductos.find((prod) => prod.id === prodId)
+        const item = data.find((prod) => prod.id === prodId)
         carrito.push(item)
     }
     
     actualizarCarrito() 
 }
+}
 
+mostrarProductos()
 
 //-----------------Eliminamos los productos del carrito----------------------
 const eliminarDelCarrito = (prodId) => {

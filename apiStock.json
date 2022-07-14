@@ -1,6 +1,7 @@
 [
     {   "id": 1, 
         "nombre": "Adidas Predator", 
+        "marca": "Adidas",    
         "cantidad": 1, 
         "precio": 12200, 
         "talle": 41, 
@@ -8,6 +9,7 @@
     },
 
     {   "id": 2, 
+        "marca": "Adidas",  
         "nombre": "Adidas Predator1",
         "cantidad": 1, 
         "precio": 15100, 
@@ -16,6 +18,7 @@
     },
 
     {   "id": 3, 
+        "marca": "Adidas",  
         "nombre": "Adidas Copa", 
         "cantidad": 1, 
         "precio": 14200, 
@@ -24,6 +27,7 @@
     },
 
     {   "id": 4, 
+        "marca": "Adidas",  
         "nombre": "Adidas SpeedFlow", 
         "cantidad": 1, 
         "precio": 15400, 
@@ -32,6 +36,7 @@
     },
 
     {   "id": 5, 
+        "marca": "Adidas",  
         "nombre": "Adidas Edge", 
         "cantidad": 1, 
         "precio": 17200, 
@@ -40,6 +45,7 @@
     },
 
     {   "id": 6, 
+        "marca": "Adidas",  
         "nombre": "Adidas Copa Sense", 
         "cantidad": 1, 
         "precio": 18500, 
@@ -48,6 +54,7 @@
     },
 
     {   "id": 7, 
+        "marca": "Nike",
         "nombre": "Nike Phantom", 
         "cantidad": 1, 
         "precio": 12200, 
@@ -56,6 +63,7 @@
     },
 
     {   "id": 8, 
+        "marca": "Nike",
         "nombre": "Nike Superfly 7", 
         "cantidad": 1, 
         "precio": 15100, 
@@ -64,6 +72,7 @@
     },
 
     {   "id": 9, 
+        "marca": "Nike",
         "nombre": "Nike Superfly 8", 
         "cantidad": 1, 
         "precio": 14200, 
@@ -72,6 +81,7 @@
     },
 
     {   "id": 10, 
+        "marca": "Nike",
         "nombre":"Nike Tiempo", 
         "cantidad": 1, 
         "precio": 15400, 
@@ -80,6 +90,7 @@
     },
 
     {   "id": 11, 
+        "marca": "Nike",
         "nombre": "Nike Mercurial Vapor", 
         "cantidad": 1, 
         "precio": 17200, 
@@ -89,6 +100,7 @@
 
     {   "id": 12, 
         "nombre": "Nike Phantom Gt", 
+        "marca": "Nike",
         "cantidad": 1, 
         "precio": 18500, 
         "talle": 42, 
@@ -96,6 +108,7 @@
     },
 
     {   "id": 13, 
+        "marca": "Puma",
         "nombre": "Puma Borussia", 
         "cantidad": 1, 
         "precio": 12200, 
@@ -104,6 +117,7 @@
     },
 
     {   "id": 14, 
+        "marca": "Puma",
         "nombre": "Puma Evopower", 
         "cantidad": 1, 
         "precio": 15100, 
@@ -112,6 +126,7 @@
     },
 
     {   "id": 15, 
+        "marca": "Puma",
         "nombre": "Puma Future 53 Netfit", 
         "cantidad": 1, 
         "precio": 14200, 
@@ -120,6 +135,7 @@
     },
 
     {   "id": 16, 
+        "marca": "Puma",
         "nombre": "Puma Future Z", 
         "cantidad": 1, 
         "precio": 15400, 
@@ -128,6 +144,7 @@
     },
 
     {   "id": 17, 
+        "marca": "Puma",
         "nombre": "Puma Future", 
         "cantidad": 1, 
         "precio": 17200, 
@@ -136,6 +153,7 @@
     },
 
     {   "id": 18, 
+        "marca": "Puma",
         "nombre": "Puma Ultra", 
         "cantidad": 1, 
         "precio": 18500, 
