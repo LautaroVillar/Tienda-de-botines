@@ -12,31 +12,20 @@ const contadorCarrito = document.getElementById('contadorCarrito')
 const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
+const comprarProducto = document.getElementById('comprar-producto')
+
 
 let carrito = []
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-        // fetchData()
     //operador ternario
     if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
     }
 })
-
-// const fetchData = async () => {
-//     try {
-//         const res = await fetch("/apiStock.json")
-//         const data = await res.json()
-//         console.log(data)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
-
 
 
 //---------------Vaciamos el carrito-------------------------
@@ -45,10 +34,12 @@ botonVaciar.addEventListener('click', () => {
     actualizarCarrito()
 })
 
-//-------------Seleccionamos la sección Adidas-------------------
-const mostrarProductos = async () => {
+
+    const mostrarProductos = async () => {
     const resp = await fetch("/apiStock.json")
     const data = await resp.json()
+
+//-----------Seleccionamos la sección Adidas------------    
 if (document.title === 'Tienda de botines-Adidas'){
     const stockProductosAdidas = data.filter(productoAdidas => productoAdidas.marca === "Adidas")
     stockProductosAdidas.forEach((producto) => {
@@ -59,7 +50,7 @@ if (document.title === 'Tienda de botines-Adidas'){
     <h3>${producto.nombre}</h3>
     <p>Talle: ${producto.talle}</p>
     <p class="precioProducto">Precio:$ ${producto.precio}</p>
-    <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
+    <button id="agregar${producto.id}" class="boton-agregar"> AGREGAR AL CARRITO </button>
     `
     contenedorProductos.appendChild(div)
 
@@ -71,6 +62,10 @@ if (document.title === 'Tienda de botines-Adidas'){
        
         agregarAlCarrito(producto.id)
        
+    })
+    comprarProducto.addEventListener('click', () =>{
+
+        location.href = 'comprar.html'
     })
 })
 }
@@ -86,7 +81,7 @@ if (document.title === 'Tienda de botines-Nike'){
         <h3>${producto.nombre}</h3>
         <p>Talle: ${producto.talle}</p>
         <p class="precioProducto">Precio:$ ${producto.precio}</p>
-        <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
+        <button id="agregar${producto.id}" class="boton-agregar">AGREGAR AL CARRITO</button>
         `
         contenedorProductos.appendChild(div)
     
@@ -99,6 +94,11 @@ if (document.title === 'Tienda de botines-Nike'){
             agregarAlCarrito(producto.id)
            
         })
+        comprarProducto.addEventListener('click', () =>{
+
+            location.href = 'comprar.html'
+        })
+
     })
 }
 //---------------Seleccionamos la seccción Puma---------------------
@@ -112,18 +112,23 @@ if (document.title === 'Tienda de botines-Puma'){
         <h3>${producto.nombre}</h3>
         <p>Talle: ${producto.talle}</p>
         <p class="precioProducto">Precio:$ ${producto.precio}</p>
-        <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
+        <button id="agregar${producto.id}" class="boton-agregar">AGREGAR AL CARRITO</button>
         `
         contenedorProductos.appendChild(div)
     
        
         const boton = document.getElementById(`agregar${producto.id}`)
        
+       
     
         boton.addEventListener('click', () => {
            
             agregarAlCarrito(producto.id)
            
+        })
+
+        comprarProducto.addEventListener('click', () =>{
+            location.href = 'comprar.html'
         })
     })
 }
@@ -192,7 +197,7 @@ const eliminarDelCarrito = (prodId) => {
        
 }
 //--------------Actualizamos los productos dentro del carrito----------------------
-const actualizarCarrito = () => {
+ const actualizarCarrito = () => {
     
 
     contenedorCarrito.innerHTML = "" 
@@ -201,6 +206,7 @@ const actualizarCarrito = () => {
         const div = document.createElement('div')
         div.className = ('productoEnCarrito')
         div.innerHTML = `
+        <img src=${prod.img} class="img-carrito" alt= "">
         <p>${prod.nombre}</p>
         <p>Precio:$${prod.precio}</p>
         <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
@@ -209,9 +215,11 @@ const actualizarCarrito = () => {
 
         contenedorCarrito.appendChild(div)
         
-        localStorage.setItem('carrito', JSON.stringify(carrito))
+       
 
     })
+
+    localStorage.setItem('carrito', JSON.stringify(carrito))
    //----------Nos da como resultado la cantidad de productos que tenemos en el carrito----------
     contadorCarrito.innerText = carrito.length 
 

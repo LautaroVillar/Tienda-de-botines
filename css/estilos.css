@@ -46,7 +46,6 @@ h1 {
     height:250px;
     box-shadow: 5px 5px 5px 5px rgb(53, 49, 49);
 }
-
 #boton-carrito {
     border: none;
     color: rgb(18, 18, 18);
@@ -71,7 +70,6 @@ h1 {
     display: flex;
     flex-wrap: wrap;
 }
-
 p {
     line-height: 1.8;
 }
@@ -86,16 +84,16 @@ p {
     font-weight: 700;
 }
 .boton-agregar {
-    background-color: rgba(250, 235, 215, 0);
-    color: rgb(242, 2, 2);
-    font-size: 18px;
-    font-weight: 700;
-    padding: 5px;
+    background-color: rgb(15, 86, 253);
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 25PX;
     border: none;
 }
 .boton-agregar:hover {
     cursor: pointer;
-    background-color: rgb(243, 236, 236);
+    background-color: rgb(139, 153, 231);
 }
 .boton-agregar:focus {
     outline: none;
@@ -166,6 +164,7 @@ p {
     padding: 5px 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .productoEnCarrito:hover {
     border-left: 5px solid rgb(236, 27, 27);
@@ -173,7 +172,7 @@ p {
 
 .boton-eliminar {
     background-color: white;
-    color: red;
+    color: rgb(228, 19, 19);
     border: none;
     font-size: 20px;
 }
@@ -189,11 +188,15 @@ p {
     width: 200px;
     height: 200px;
 }
+.img-carrito{
+    width: 50px;
+    height: 50px;
+}
 section{
     display: none;
 }
 .productoDestacado p{
-    line-height: 1;
+    line-height: 2;
 }
 .productoDestacado .boton-agregar{
     padding: 0;
