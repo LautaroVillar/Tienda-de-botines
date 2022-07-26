@@ -13,7 +13,9 @@ const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
 const comprarProducto = document.getElementById('comprar-producto')
-
+const seguirComprando = document.getElementById('buttonCompra')
+const finalizarCompra = document.getElementById('buttonFinalizar')
+const formulario = document.getElementById('formul')
 
 let carrito = []
 
@@ -38,6 +40,33 @@ botonVaciar.addEventListener('click', () => {
     const mostrarProductos = async () => {
     const resp = await fetch("/apiStock.json")
     const data = await resp.json()
+//-----------Productos Destacados----------------------
+if (document.title === 'Tienda de botines'){
+    const productosDestacados = data.filter(productoDestacado => productoDestacado.producto === "Producto Destacado")
+    productosDestacados.forEach((producto) => {
+    const div = document.createElement('div')
+    div.classList.add('producto')
+    div.innerHTML = `
+    <img src=${producto.img} class="img" alt= "">
+    <h3>${producto.nombre}</h3>
+    <p>Talle: ${producto.talle}</p>
+    <p class="precioProducto">Precio:$ ${producto.precio}</p>
+    <button id="agregar${producto.id}" class="boton-agregar"> AGREGAR AL CARRITO </button>
+    `
+    contenedorProductos.appendChild(div)
+
+   
+    const boton = document.getElementById(`agregar${producto.id}`)
+   
+
+    boton.addEventListener('click', () => {
+       
+        agregarAlCarrito(producto.id)
+       
+    })
+
+})
+}
 
 //-----------Seleccionamos la sección Adidas------------    
 if (document.title === 'Tienda de botines-Adidas'){
@@ -63,10 +92,7 @@ if (document.title === 'Tienda de botines-Adidas'){
         agregarAlCarrito(producto.id)
        
     })
-    comprarProducto.addEventListener('click', () =>{
 
-        location.href = 'comprar.html'
-    })
 })
 }
 
@@ -94,11 +120,6 @@ if (document.title === 'Tienda de botines-Nike'){
             agregarAlCarrito(producto.id)
            
         })
-        comprarProducto.addEventListener('click', () =>{
-
-            location.href = 'comprar.html'
-        })
-
     })
 }
 //---------------Seleccionamos la seccción Puma---------------------
@@ -125,10 +146,6 @@ if (document.title === 'Tienda de botines-Puma'){
            
             agregarAlCarrito(producto.id)
            
-        })
-
-        comprarProducto.addEventListener('click', () =>{
-            location.href = 'comprar.html'
         })
     })
 }
@@ -215,7 +232,10 @@ const eliminarDelCarrito = (prodId) => {
 
         contenedorCarrito.appendChild(div)
         
-       
+        comprarProducto.addEventListener('click', () =>{
+
+            location.href = '../productos/comprar.html'
+        })
 
     })
 
@@ -226,3 +246,20 @@ const eliminarDelCarrito = (prodId) => {
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
     
 }
+
+finalizarCompra.addEventListener('click', () =>{
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Gracias por realizar su compra, a la brevedad recibirá un correo con la confirmación de la misma',
+        showConfirmButton: false,
+        timer: 4000
+      })
+      formulario.reset()
+      carrito.length = 0
+      actualizarCarrito()
+})
+
+seguirComprando.addEventListener('click', ()=>{
+    location.href = '../index.html'
+})

@@ -1,7 +1,8 @@
 [
     {   "id": 1, 
         "nombre": "Adidas Predator", 
-        "marca": "Adidas",    
+        "marca": "Adidas", 
+        "producto": "Producto Destacado",
         "cantidad": 1, 
         "precio": 12200, 
         "talle": 41, 
@@ -19,6 +20,7 @@
 
     {   "id": 3, 
         "marca": "Adidas",  
+        "producto": "Producto Destacado",
         "nombre": "Adidas Copa", 
         "cantidad": 1, 
         "precio": 14200, 
@@ -64,6 +66,7 @@
 
     {   "id": 8, 
         "marca": "Nike",
+        "producto": "Producto Destacado",
         "nombre": "Nike Superfly 7", 
         "cantidad": 1, 
         "precio": 15100, 
@@ -82,6 +85,7 @@
 
     {   "id": 10, 
         "marca": "Nike",
+        "producto": "Producto Destacado",
         "nombre":"Nike Tiempo", 
         "cantidad": 1, 
         "precio": 15400, 
@@ -109,6 +113,7 @@
 
     {   "id": 13, 
         "marca": "Puma",
+        "producto": "Producto Destacado",
         "nombre": "Puma Borussia", 
         "cantidad": 1, 
         "precio": 12200, 

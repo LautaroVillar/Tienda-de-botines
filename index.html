@@ -20,6 +20,7 @@
     <!-----------------Barra de Navegación---------------------------->
     <header>
       <h1 id="titulo" class="titulo">Tienda de botines</h1>
+      <button id="boton-carrito"><i class="fas fa-shopping-cart"></i><span id="contadorCarrito">0</span></button>
     </header>
         <div>
             <img src="img/Portada-6.jpg" class="portada" alt="">
@@ -38,38 +39,21 @@
             </a>
         </div>
     </main>
-    <section>
-        <h2>Productos Destacados</h2>
-        <div id="contenedor-section">
-            <div class="productoDestacado">
-                <img src="img/Adidas-Predator.jpg" class="img" alt= "Botines adidas predator">
-                <h3>Adidas Predator</h3>
-                <p>Talle: 41 </p>
-                <p class="precioProducto">Precio:$ 12200 </p>
-                <button class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
+    <div class="modal-contenedor">
+        <div class="modal-carrito">
+            <h3>Carrito</h3>
+            <button id="carritoCerrar"><i class="fas fa-times-circle"></i></button>
+            <div id="carrito-contenedor">
             </div>
-            <div class="productoDestacado">
-                <img src="img/Nike-Tiempo.webp" class="img" alt= "Botines nike tiempo">
-                <h3>Nike Tiempo</h3>
-                <p>Talle: 45 </p>
-                <p class="precioProducto">Precio:$ 15400 </p>
-                <button class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
-            </div>
-            <div class="productoDestacado">
-                <img src="img/Puma-Borussia.jpg" class="img" alt= "Botines puma borussia">
-                <h3>Puma Borussia</h3>
-                <p>Talle: 41 </p>
-                <p class="precioProducto">Precio:$ 12200 </p>
-                <button class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
-            </div>
-            <div class="productoDestacado">
-                <img src="img/Adidas-Copa.webp"  class="img" alt="Botines adidas copa">
-                <h3>Adidas Copa</h3>
-                <p>Talle: 44 </p>
-                <p class="precioProducto">Precio:$ 14200 </p>
-                <button class="boton-agregar">Agregar <i class="fa-solid fa-cart-plus"></i></button>
-            </div>
+            <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+            <button id="vaciar-carrito" class="boton-agregar">VACIAR CARRITO</button>
+            <button id="comprar-producto" class="boton-agregar">COMPRAR</button>
         </div>
+    </div>
+    <h2>Productos Destacados</h2>
+    <section id="contenedor-productos">
+       
+        
     </section>
     <footer id="contenedor-footer">
         <div class="icono">
@@ -83,6 +67,8 @@
             <strong class="s-footer"> ©Tienda de botines.</strong> Todos los derechos reservados.
           </p>
     </footer>
+    <script defer src="../js/modal.js"></script>
+    <script defer src="../js/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
