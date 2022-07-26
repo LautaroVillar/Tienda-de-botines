@@ -23,6 +23,15 @@ h1 {
     font-weight: 900;
     font-size: 25px;
 }
+h2{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin: 10px;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
 .titulo{
     text-decoration: none;
 }
@@ -199,16 +208,6 @@ p {
 }
 section{
     display: none;
-}
-.productoDestacado p{
-    line-height: 2;
-}
-.productoDestacado .boton-agregar{
-    padding: 0;
-}
-.productoDestacado h3{
-    font-weight: 500;
-    font-size: 24px;
 }
 /*-----------contenido del footer---------------*/
 #contenedor-footer{
